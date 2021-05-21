@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Recipe App | Umrbek</title>
+</head>
+<body>
+
+    <div class="mobile-container">
+        <header>
+            <input type="text" id="search-input">
+            <button id="search"><i class="fas fa-search"></i></button>
+        </header>
+        <div class="fav-container">
+            <h3>Favourite meals</h3>    
+            <ul class="fav-meals" id="fav-meals">
+            </ul>
+        </div>
+
+        <div class="reload">
+            <button class="reloadBtn" onclick="location.reload()">click for next random meal</button>
+        </div>
+        <div class="meals" id="meals">
+            <div class="meal">
+                <!-- <div class="meal-header">
+                    <span class="random">Random recipe</span>
+                    <img src="https://www.themealdb.com//images//media//meals//t8mn9g1560460231.jpg" alt="">
+                </div>
+                <div class="meal-body">
+                    <h4>Veggie Veggie</h4>
+                    <button>
+                       <i class="fas fa-heart"></i>
+                    </button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
