@@ -4,7 +4,8 @@
 
 body{
     margin: 0;
-
+    position: relative;
+    
     background: #D3CCE3;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #E9E4F0, #D3CCE3);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #E9E4F0, #D3CCE3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -12,7 +13,6 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
 
 }
 
@@ -21,7 +21,6 @@ body{
     background-color: #fff;
     box-shadow: 0 0 10px 2px #3333331a;
     overflow: hidden;
-
 }
 
 img{
@@ -62,19 +61,19 @@ header button:hover{
 header button:active{
     transform: scale(0.95);
 }
-.fav-meals::-webkit-scrollbar{
+.fav-meals::-webkit-scrollbar,.related-recipe::-webkit-scrollbar{
     position: absolute;
     height: 25px;
 }
-.fav-meals::-webkit-scrollbar-track{
-    /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); */
-    /* border-radius: 10px; */
+.fav-meals::-webkit-scrollbar-track,.related-recipe::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
-.fav-meals::-webkit-scrollbar-thumb{
-    /* border-radius: 10px; */
+.fav-meals::-webkit-scrollbar-thumb,.related-recipe::-webkit-scrollbar-thumb{
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
-
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
 }
+
 .fav-container{
 
     padding: 1rem 1rem  0 1rem;
@@ -110,7 +109,6 @@ header button:active{
     right: -15px;
 }
 
-
 .fav-meals li img{
     width: 75px;
     height: 75px;
@@ -120,11 +118,7 @@ header button:active{
     object-fit: cover;
     box-shadow: 0 0 10px 2px #3333331a;
     border: 3px solid #fff;
-    /* border-right: 5px solid yellow;
-    border-left: 5px solid yellow;
-    border-top: 5px solid green;
-    border-bottom: 5px solid green; */
-
+    cursor: pointer;
 }
 .fav-meals li span{
     font-size: 0.8rem;
@@ -152,6 +146,7 @@ header button:active{
     object-fit: cover;
     height: 300px;
     width: 100%;
+    cursor: pointer;
 }
 
 .meal-body{
@@ -177,8 +172,8 @@ header button:active{
 }
 
 .dontfind{
-    padding: 25px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 1.57rem;
+    font-family: Impact, 'Arial Narrow Bold', sans-serif;
     font-size: 1.5rem;
     color: #797979;
 }
@@ -225,4 +220,67 @@ header button:active{
 
 .reloadBtn:hover::after{
     right: 80%;
+}
+
+
+.idmeal-related-recipe{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    overflow: hidden;
+    
+    
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    background-color: rgba(145, 192, 145,0.2);
+    backdrop-filter: blur(2px);
+    
+}
+.related-recipe{
+    position: relative;
+    width: 25rem;
+    height: 100vh;
+    overflow: auto;
+    background-color: #fff;
+    padding: 1.2rem;
+    margin-top: 1rem;
+    box-shadow: 0 0 10px 2px #33333366;
+    
+}
+
+.recipe-meal{
+    padding-bottom: 1.2rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 1.5rem;
+    color: #797979;
+}
+.recipe-image{
+    box-shadow: 0 0 10px 2px #3333331a;
+
+}
+.close-recipe{
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: #797979;
+}
+.recipe{
+    text-align: justify;
+    font-family: sans-serif;
+    color: #666666;
+}
+
+.ingrds-measus li > div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.ingrds-measus li div{
+    flex: 1;
 }

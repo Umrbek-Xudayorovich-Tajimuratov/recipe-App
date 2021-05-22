@@ -19,6 +19,14 @@ async function getMealBySearch(term){
     return meals.meals;
 }
 
+// todo: fetch.get clicked meal by ID
+async function getMealByID(mealID){
+    const mealFrom= await (await fetch("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + mealID)).json();
+    const mealFromId = mealFrom.meals[0];
+
+    return mealFromId;
+}
+
 // todo: add random Meal to html
 function addMeal(mealData, random = false){
 
@@ -27,7 +35,7 @@ function addMeal(mealData, random = false){
 
     // in the .meal write new html(infos came from database)
     mealdiv.innerHTML = `
-        <div class="meal-header">
+        <div class="meal-header" onclick="callRecipe(${mealData.idMeal})">
             ${random ? ` <span class="random">Random recipe</span>` : ""}
             <img src="${mealData.strMealThumb}" 
             alt="${mealData.strMeal}">
@@ -52,7 +60,7 @@ function addMeal(mealData, random = false){
                 id: `${mealData.idMeal}`,
                 mealHtml: `
                 <li>
-                    <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}" />
+                    <img src="${mealData.strMealThumb}" alt="${mealData.strMeal}" onclick ="callRecipe(${mealData.idMeal})" />
                     <div>${mealData.strMeal}</div>
                     <div class ="deletefrom-favourite" onclick ="removeFavMeals(${mealData.idMeal})">
                         <i class="fas fa-window-close"></i>
@@ -165,6 +173,51 @@ function writeMealsFromLS(){
         }
     }
 }
+
+// todo: Where's meal, meal name, List of ingredients and Measures  and cooking instruction will build
+const idmealRelatedRecipe = document.getElementById("idmeal-related-recipe");
+async function callRecipe(idMeal){
+    const mealComeFromId = await getMealByID(idMeal);
+
+    idmealRelatedRecipe.innerHTML = `
+        <div class="related-recipe">
+            <div class="close-recipe" onclick="callCloseRecipe()"><i class="fas fa-times"></i></div>
+            <div class="recipe-meal">${mealComeFromId.strArea} ${mealComeFromId.strMeal}</div>
+            <div class="recipe-image">
+                <img src="${mealComeFromId.strMealThumb}" alt="">
+            </div>
+            <h2>Ingredients and Measures:</h2>
+            <ol class ="ingrds-measus">
+               ${listIngredients(mealComeFromId)}
+            </ol>
+            <h2>List Of Instructions</h2>
+            <p class="recipe">
+               ${mealComeFromId.strInstructions}
+            </p>
+        </div>`;
+        idmealRelatedRecipe.style.display = "flex";
+}
+// for callRecipe(idMeal) function take ingredients and measures
+function listIngredients(mealComeFromId){
+    ass =[]
+
+    for(i =1;i < 21; i++){
+        stringIng =`strIngredient${i}`;
+        strMeasus = `strMeasure${i}`
+
+        if(mealComeFromId[stringIng] != ""){
+            ass.push(`<li><div><div class ="ingreds">${mealComeFromId[stringIng]}</div><div class="measus">${mealComeFromId[strMeasus]}</div></div></li>`);
+        }
+        else{
+            return ass.join("");
+        }
+    }
+}
+// for callRecipe(idMeal) function  closing 
+function callCloseRecipe(){
+    idmealRelatedRecipe.style.display = "none";
+}
+
 
 // todo: If search button clicked find all results and write meal section
 searchBtn = document.getElementById("search");
