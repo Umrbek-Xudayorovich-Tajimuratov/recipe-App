@@ -240,3 +240,9 @@ searchBtn.addEventListener("click", async ()=>{
         findMeals.forEach((meal)=> addMeal(meal));
     }
 });
+
+
+function reloadRandomMeal(){
+    mealsdiv.innerHTML = "";
+    getRandomMeal();
+}
